@@ -11,7 +11,6 @@
   const thumbsBox = document.getElementById('thumbs');
   const capTitle = root.querySelector('.car-caption h3');
   const capDesc = root.querySelector('.car-caption p');
-  const capBadge = root.querySelector('.car-caption .badge');
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let active = 0;
 
@@ -67,11 +66,8 @@
 
   function caption() {
     const k = keys[active];
-    const real = slides[active].querySelector('.phone-screen').dataset.real === '1';
     capTitle.textContent = M.SCREENS[k].title;
     capDesc.textContent = M.SCREENS[k].desc;
-    capBadge.textContent = real ? 'Captura de ecrã real' : 'Ilustração — substitui por uma captura real';
-    capBadge.classList.toggle('real', real);
   }
 
   function go(i) { active = (i + n) % n; render(); }
