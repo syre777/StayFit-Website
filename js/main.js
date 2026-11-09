@@ -75,7 +75,7 @@
 
   /* ---------- Partículas de fundo (canvas) ---------- */
   const canvas = document.getElementById('particles');
-  if (canvas && !reduce) {
+  if (canvas && !reduce && !document.documentElement.classList.contains('lite')) {
     const ctx = canvas.getContext('2d');
     let w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 1.5), parts = [], raf = null;
     const mouse = { x: -999, y: -999 };

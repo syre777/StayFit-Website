@@ -47,7 +47,7 @@
   window.addEventListener('pageshow', function (e) {
     if (e.persisted) { document.body.classList.remove('leaving'); document.body.classList.add('ready'); }
   });
-  if (!reduce) {
+  if (!reduce && !document.documentElement.classList.contains('lite')) {
     document.addEventListener('click', function (e) {
       const a = e.target.closest('a[href]');
       if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;

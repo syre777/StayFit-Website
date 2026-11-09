@@ -1,7 +1,6 @@
 /* ==========================================================================
    StayFit — estilos base: variáveis, reset, tipografia, layout, menu, rodapé
    ========================================================================== */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap");
 
 :root {
   --bg: #0B0B0F;
@@ -27,6 +26,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
+  -webkit-tap-highlight-color: transparent;
   scroll-behavior: smooth;
   scroll-padding-top: 88px;
   -webkit-text-size-adjust: 100%;
@@ -47,6 +47,7 @@ body {
 
 img, svg, canvas { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
+a, button { touch-action: manipulation; }
 button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
 ul { list-style: none; }
 h1, h2, h3, h4 { font-family: var(--display); line-height: 1.1; letter-spacing: -.02em; }
@@ -113,11 +114,13 @@ h1, h2, h3, h4 { font-family: var(--display); line-height: 1.1; letter-spacing: 
   content: ""; position: absolute; left: 0; bottom: 0; height: 2px; width: var(--progress, 0%);
   background: var(--grad); box-shadow: 0 0 12px var(--orange);
 }
-.site-header.scrolled {
+.site-header::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; opacity: 0; transition: opacity .3s;
   background: var(--glass-strong);
   -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%);
   box-shadow: 0 1px 0 var(--line), 0 10px 40px rgba(0,0,0,.35);
 }
+.site-header.scrolled::before { opacity: 1; }
 .nav { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
 .brand { display: flex; align-items: center; gap: 12px; font-family: var(--display); font-weight: 700; font-size: 1.3rem; letter-spacing: -.01em; }
 .brand img { width: 40px; height: 40px; object-fit: contain; filter: drop-shadow(0 4px 14px rgba(255,107,0,.45)); }

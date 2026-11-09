@@ -130,8 +130,9 @@
       el.setAttribute('role', 'img');
       el.setAttribute('aria-label', 'Ilustração do ecrã: ' + s.title);
 
-      const exts = ['png', 'jpg', 'jpeg', 'webp'];
-      (function tryNext(i) {
+      const exts = ['png', 'jpg', 'webp'];
+      function start() { tryNext(0); }
+      function tryNext(i) {
         if (i >= exts.length) return;
         const img = new Image();
         img.className = 'shot';
@@ -146,7 +147,13 @@
         };
         img.onerror = function () { tryNext(i + 1); };
         img.src = 'assets/screenshots/' + key + '.' + exts[i];
-      })(0);
+      }
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(function (es) {
+          if (es[0].isIntersecting) { io.disconnect(); start(); }
+        }, { rootMargin: '300px' });
+        io.observe(el);
+      } else { start(); }
     });
   }
 

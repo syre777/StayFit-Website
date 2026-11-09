@@ -6,6 +6,7 @@
 (function () {
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const lite = document.documentElement.classList.contains('lite');
 
   /* ---------- Split Text: letras em cascata ---------- */
   document.querySelectorAll('[data-split]').forEach(function (el) {
@@ -95,6 +96,7 @@
     b.textContent = texts[1];
 
     function frac(f) {
+      if (lite) { b.style.opacity = f; a.style.opacity = 1 - f; return; }
       b.style.filter = 'blur(' + Math.min(8 / Math.max(f, 0.0001) - 8, 100) + 'px)';
       b.style.opacity = Math.pow(f, 0.4);
       const g = 1 - f;
@@ -175,7 +177,7 @@
 
   /* ---------- Parallax ao scroll ---------- */
   const px = document.querySelectorAll('[data-parallax]');
-  if (px.length && !reduce) {
+  if (px.length && !reduce && !lite) {
     let ticking = false;
     function update() {
       const vh = window.innerHeight;
