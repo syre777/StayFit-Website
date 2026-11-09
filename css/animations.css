@@ -1,0 +1,122 @@
+/* ==========================================================================
+   StayFit — animações (inspiradas nos efeitos do React Bits, em CSS/JS puro)
+   ========================================================================== */
+
+@keyframes drift1 { to { transform: translate3d(8vw, 6vh, 0) scale(1.15); } }
+@keyframes drift2 { to { transform: translate3d(-10vw, -8vh, 0) scale(1.1); } }
+@keyframes gradMove { to { background-position: 100% 0; } }
+@keyframes shine { 0% { background-position: 150% 0; } 100% { background-position: -100% 0; } }
+@keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+@keyframes pulseRing { 0% { transform: scale(.9); opacity: .7; } 100% { transform: scale(1.7); opacity: 0; } }
+@keyframes marquee { to { transform: translateX(-50%); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes drawLogo { from { stroke-dashoffset: 120; } to { stroke-dashoffset: 0; } }
+@keyframes blink { 50% { opacity: .25; } }
+
+/* ---------- Scroll reveal (entra e sai) ---------- */
+.js .reveal {
+  opacity: 0; transform: translate3d(0, 40px, 0) scale(.985); filter: blur(6px);
+  transition: opacity .8s var(--ease), transform .8s var(--ease), filter .8s var(--ease);
+  transition-delay: var(--d, 0ms);
+}
+.js .reveal.from-left { transform: translate3d(-60px, 0, 0); }
+.js .reveal.from-right { transform: translate3d(60px, 0, 0); }
+.js .reveal.zoom { transform: scale(.9); }
+.js .reveal.in { opacity: 1; transform: none; filter: none; }
+
+/* ---------- Split Text (letras em cascata) ---------- */
+.word { display: inline-block; white-space: nowrap; }
+.ch { display: inline-block; will-change: transform; }
+.js [data-split] .ch {
+  opacity: 0; transform: translate3d(0, .7em, 0) rotate(8deg);
+  transition: opacity .6s var(--ease), transform .8s var(--ease);
+  transition-delay: calc(var(--i) * 32ms);
+}
+.js [data-split].in .ch { opacity: 1; transform: none; }
+
+/* ---------- Blur Text (palavras que ganham nitidez) ---------- */
+.js [data-blur] .bw {
+  display: inline-block; opacity: 0; filter: blur(10px); transform: translate3d(0, -14px, 0);
+  transition: opacity .7s var(--ease), filter .7s var(--ease), transform .7s var(--ease);
+  transition-delay: calc(var(--i) * 70ms);
+}
+.js [data-blur].in .bw { opacity: 1; filter: blur(0); transform: none; }
+[data-blur] .bw { white-space: pre-wrap; }
+
+/* ---------- Text Reveal (máscara) ---------- */
+.tr-mask { display: block; overflow: hidden; padding-bottom: .12em; margin-bottom: -.12em; }
+.tr-in { display: block; }
+.js [data-textreveal] .tr-in { transform: translateY(110%); transition: transform .95s var(--ease); transition-delay: calc(var(--i) * 110ms); }
+.js [data-textreveal].in .tr-in { transform: none; }
+
+/* ---------- Shiny Text ---------- */
+.shiny {
+  background: linear-gradient(110deg, #9a9aa5 38%, #ffffff 50%, #9a9aa5 62%);
+  background-size: 250% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: shine 3.6s linear infinite;
+}
+.shiny-orange {
+  background: linear-gradient(110deg, #FF6B00 38%, #FFE0C2 50%, #FF6B00 62%);
+  background-size: 250% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: shine 3.2s linear infinite;
+}
+.hero-title .ch {
+  background: linear-gradient(110deg, #fff 36%, #FFB27A 48%, #FF6B00 52%, #fff 64%);
+  background-size: 260% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: shine 5s linear infinite;
+  animation-delay: calc(var(--i) * -.14s);
+}
+
+/* ---------- Gooey Text ---------- */
+.gooey { position: relative; height: 1.3em; width: 100%; filter: url(#gooey-filter); font-family: var(--display); font-weight: 700; }
+.gooey span { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; white-space: nowrap; user-select: none; }
+.gooey-wrap { font-size: clamp(1.5rem, 4.2vw, 2.6rem); color: var(--orange-2); margin: 6px 0 4px; }
+.gooey-wrap.left .gooey span { justify-content: flex-start; }
+
+/* ---------- Spotlight + Tilt ---------- */
+.spot { position: relative; isolation: isolate; overflow: hidden; }
+.spot::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; opacity: 0; transition: opacity .35s;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(255,107,0,.22), transparent 65%);
+}
+.spot::after {
+  content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; border-radius: inherit; padding: 1px; opacity: 0; transition: opacity .35s;
+  background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(255,154,77,.9), transparent 70%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+          mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+.spot:hover::before, .spot:hover::after { opacity: 1; }
+[data-tilt] { transform-style: preserve-3d; transition: transform .25s ease-out; will-change: transform; }
+[data-tilt].tilting { transition: none; }
+
+/* ---------- Botões magnéticos ---------- */
+[data-magnetic] { transition: transform .35s var(--ease); will-change: transform; }
+
+/* ---------- Telemóvel 3D ---------- */
+.stage { perspective: 1500px; }
+.phone-float { animation: floaty 6s ease-in-out infinite; }
+.logo-pulse { position: relative; display: inline-grid; place-items: center; }
+.logo-pulse::before, .logo-pulse::after {
+  content: ""; position: absolute; inset: 0; border-radius: 28%; border: 2px solid rgba(255,107,0,.6);
+  animation: pulseRing 2.8s ease-out infinite;
+}
+.logo-pulse::after { animation-delay: 1.4s; }
+.logo-draw path, .logo-draw rect.d { stroke-dasharray: 120; animation: drawLogo 1.6s .3s var(--ease) both; }
+
+/* ---------- Marquee ---------- */
+.marquee { overflow: hidden; border-block: 1px solid var(--line); background: rgba(255,255,255,.02); padding: 18px 0; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+.marquee-track { display: flex; gap: 48px; width: max-content; animation: marquee 28s linear infinite; }
+.marquee span { font-family: var(--display); font-size: clamp(1.2rem, 2.6vw, 1.9rem); font-weight: 600; color: rgba(255,255,255,.55); white-space: nowrap; display: inline-flex; align-items: center; gap: 48px; }
+.marquee span::after { content: "✦"; color: var(--orange); font-size: .7em; }
+
+/* ---------- Movimento reduzido ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; transition-delay: 0ms !important; }
+  .js .reveal, .js [data-split] .ch, .js [data-blur] .bw, .js [data-textreveal] .tr-in { opacity: 1 !important; transform: none !important; filter: none !important; }
+  .marquee-track { animation: none; }
+  .js body { opacity: 1 !important; }
+}
