@@ -62,8 +62,8 @@ a.card { display: block; }
 /* ---------- Hero ---------- */
 .hero { position: relative; min-height: 100svh; display: flex; align-items: center; padding: calc(var(--nav-h) + 24px) 0 56px; }
 .hero-grid { display: grid; grid-template-columns: 1.08fr .92fr; gap: 40px; align-items: center; }
-.hero-logo { width: 84px; height: 84px; margin-bottom: 22px; }
-.hero-logo svg { width: 100%; height: 100%; filter: drop-shadow(0 10px 30px rgba(255,107,0,.55)); }
+.hero-logo { width: 96px; height: 96px; margin-bottom: 22px; }
+.hero-logo img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 10px 30px rgba(255,107,0,.55)); }
 .hero-title { font-size: clamp(3.6rem, 12.5vw, 9rem); font-weight: 700; letter-spacing: -.05em; line-height: .92; }
 .hero-sub { font-size: clamp(1.1rem, 2vw, 1.4rem); color: #d4d4dc; margin: 14px 0 32px; max-width: 34ch; }
 .hero-meta { display: flex; gap: 22px; margin-top: 30px; color: var(--muted); font-size: .88rem; flex-wrap: wrap; }
@@ -237,7 +237,7 @@ a.card { display: block; }
 /* ---------- Download ---------- */
 .dl-card { max-width: 920px; margin: 0 auto; padding: clamp(28px, 5vw, 56px); border-radius: 36px; display: grid; grid-template-columns: auto 1fr; gap: clamp(24px, 4vw, 48px); align-items: center; }
 .dl-logo { width: 150px; height: 150px; }
-.dl-logo svg { width: 100%; height: 100%; filter: drop-shadow(0 16px 40px rgba(255,107,0,.5)); }
+.dl-logo img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 16px 40px rgba(255,107,0,.5)); }
 .dl-card h2 { font-size: clamp(2rem, 5vw, 3rem); }
 .dl-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 24px 0; }
 .dl-meta div { padding: 14px 16px; border-radius: 16px; background: rgba(255,255,255,.04); border: 1px solid var(--line); }

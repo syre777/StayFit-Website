@@ -1,0 +1,15 @@
+Coloca aqui as capturas de ecrã REAIS da StayFit.
+
+Nomes (sem espaços, extensão .png, .jpg ou .webp):
+  home        -> Ecrã inicial
+  treinos     -> Treinos
+  plano       -> Plano semanal
+  nutricao    -> Nutrição
+  progresso   -> Progresso
+  perfil      -> Perfil
+  conquistas  -> Conquistas
+  loja        -> Loja
+  definicoes  -> Definições
+
+Formato recomendado: proporção de um telemóvel (ex.: 1080x2340). Não é preciso alterar código:
+cada imagem substitui automaticamente a ilustração correspondente no site.

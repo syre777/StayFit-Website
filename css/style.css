@@ -120,7 +120,7 @@ h1, h2, h3, h4 { font-family: var(--display); line-height: 1.1; letter-spacing: 
 }
 .nav { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
 .brand { display: flex; align-items: center; gap: 12px; font-family: var(--display); font-weight: 700; font-size: 1.3rem; letter-spacing: -.01em; }
-.brand svg { width: 38px; height: 38px; filter: drop-shadow(0 4px 14px rgba(255,107,0,.5)); }
+.brand img { width: 40px; height: 40px; object-fit: contain; filter: drop-shadow(0 4px 14px rgba(255,107,0,.45)); }
 .nav-links { display: flex; align-items: center; gap: 4px; padding: 6px; border-radius: 999px; background: var(--glass); border: 1px solid var(--line); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
 .nav-links a {
   position: relative; padding: 8px 16px; border-radius: 999px; font-size: .93rem; font-weight: 500;

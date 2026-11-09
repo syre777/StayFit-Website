@@ -100,11 +100,12 @@
 .phone-float { animation: floaty 6s ease-in-out infinite; }
 .logo-pulse { position: relative; display: inline-grid; place-items: center; }
 .logo-pulse::before, .logo-pulse::after {
-  content: ""; position: absolute; inset: 0; border-radius: 28%; border: 2px solid rgba(255,107,0,.6);
+  content: ""; position: absolute; inset: 0; border-radius: 50%; border: 2px solid rgba(255,107,0,.6);
   animation: pulseRing 2.8s ease-out infinite;
 }
 .logo-pulse::after { animation-delay: 1.4s; }
-.logo-draw path, .logo-draw rect.d { stroke-dasharray: 120; animation: drawLogo 1.6s .3s var(--ease) both; }
+.hero-logo img { animation: logoIn 1.2s var(--ease) both; }
+@keyframes logoIn { from { opacity: 0; transform: scale(.6) rotate(-12deg); } to { opacity: 1; transform: none; } }
 
 /* ---------- Marquee ---------- */
 .marquee { overflow: hidden; border-block: 1px solid var(--line); background: rgba(255,255,255,.02); padding: 18px 0; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }

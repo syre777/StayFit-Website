@@ -1,0 +1,4 @@
+Coloca aqui o ficheiro APK com o nome exato:  StayFit.apk
+
+Para publicar uma nova versão: substitui o ficheiro por outro com o mesmo nome
+e atualiza o número da versão em js/config.js.
